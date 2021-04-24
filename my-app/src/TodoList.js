@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import "./style.css";
 
 class TodoList extends Component {
 
@@ -18,7 +19,10 @@ class TodoList extends Component {
         return (
             <Fragment>
                 <div>
+                    <label htmlFor="insertArea">输入内容：</label>
                     <input
+                        id="insertArea"
+                        className="input"
                         // 使用ES6语法中的bind函数改变this的指向
                         onChange={this.handleInputChange.bind(this)}
                         value={this.state.inputValue} />
@@ -30,8 +34,11 @@ class TodoList extends Component {
                             return (
                                 <li
                                     key={index}
-                                    onClick={this.handleItemDelete.bind(this, index)}>
-                                    {item}
+                                    onClick={this.handleItemDelete.bind(this, index)}
+                                    // input输入的值如果包含标签，不进行转义
+                                    dangerouslySetInnerHTML={{ __html: item }}
+                                >
+                                    {/* {item} */}
                                 </li>)
                         })
                     }
