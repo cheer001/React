@@ -49,7 +49,10 @@ class TodoList extends Component {
     handleBtnClick() {
         // precState: 修改前的数据
         this.setState((prevState) => {
-            return { list: [...prevState.list, prevState.inputValue], inputValue: "" }
+            return {
+                list: [...prevState.list, prevState.inputValue],
+                inputValue: ""
+            }
         })
     }
     handleItemDelete(index) {
