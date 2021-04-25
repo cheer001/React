@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import TodoItem from "./TodoItem";
 import "./style.css";
 
 class TodoList extends Component {
@@ -32,14 +33,22 @@ class TodoList extends Component {
                     {
                         this.state.list.map((item, index) => {
                             return (
-                                <li
-                                    key={index}
-                                    onClick={this.handleItemDelete.bind(this, index)}
-                                    // input输入的值如果包含标签，不进行转义
-                                    dangerouslySetInnerHTML={{ __html: item }}
-                                >
-                                    {/* {item} */}
-                                </li>)
+                                <div key={index}>
+                                    <TodoItem
+                                        content={item}
+                                        index={index}
+                                        deleteItem={this.handleItemDelete.bind(this)}
+                                    />
+                                    {/*  <li
+                                         key={index}
+                                         onClick={this.handleItemDelete.bind(this, index)}
+                                         // input输入的值如果包含标签，不进行转义
+                                         dangerouslySetInnerHTML={{ __html: item }}
+                                     >
+                                        {/* {item} }
+                                     </li> */}
+                                </div>
+                            )
                         })
                     }
                 </ul>
