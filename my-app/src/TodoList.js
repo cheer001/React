@@ -31,7 +31,8 @@ class TodoList extends Component {
                         id="insertArea"
                         className="input"
                         onChange={this.handleInputChange}
-                        value={inputValue} />
+                        value={inputValue}
+                    />
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
                 <ul>
@@ -72,6 +73,7 @@ class TodoList extends Component {
                         content={item}
                         index={index}
                         deleteItem={this.handleItemDelete}
+                        // test="haha"
                     />
                 )
             })
