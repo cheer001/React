@@ -55,3 +55,8 @@ React函数式编程带来了几个好处：
 PropTypes:限制父组件向子组件传值的类型
 DefaultProps:父组件没有向子组件传递值时使用默认值，传递则会覆盖该值
 https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html
+
+### 数据驱动
+
+当数据发生变化时，页面也会变化
+当组件的state或者props发生改变的时候，render函数就会重新执行，同理，当父组件的render函数每次被运行时，它会带着它的子组件一起运行

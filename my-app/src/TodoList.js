@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import TodoItem from "./TodoItem";
+import Test from "./Test";
 import "./style.css";
 
 class TodoList extends Component {
@@ -7,6 +8,7 @@ class TodoList extends Component {
     // 最优先执行的函数
     constructor(props) {
         super(props);
+        // 当组件的state或者props发生改变的时候，render函数就会重新执行
         /** 管理组件的状态 */
         this.state = {
             /** input输入框中的值 */
@@ -22,6 +24,7 @@ class TodoList extends Component {
     }
 
     render() {
+        console.log("todolist render");
         const { inputValue } = this.state;
         return (
             <Fragment>
@@ -38,6 +41,7 @@ class TodoList extends Component {
                 <ul>
                     {this.getTodoItem()}
                 </ul>
+                <Test content={inputValue} />
             </Fragment>
         )
     }
@@ -73,7 +77,7 @@ class TodoList extends Component {
                         content={item}
                         index={index}
                         deleteItem={this.handleItemDelete}
-                        // test="haha"
+                    // test="haha"
                     />
                 )
             })
