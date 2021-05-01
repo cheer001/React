@@ -8,6 +8,8 @@ class TodoList extends Component {
     // 最优先执行的函数
     constructor(props) {
         super(props);
+        // 1. 创建Refs
+        this.myDiv = React.createRef();
         // 当组件的state或者props发生改变的时候，render函数就会重新执行
         /** 管理组件的状态 */
         this.state = {
@@ -28,26 +30,36 @@ class TodoList extends Component {
         const { inputValue } = this.state;
         return (
             <Fragment>
-                <div>
+                {/* 2. 绑定Refs */}
+                <div ref={this.myDiv}>
                     <label htmlFor="insertArea">输入内容：</label>
                     <input
                         id="insertArea"
                         className="input"
                         onChange={this.handleInputChange}
                         value={inputValue}
+                        ref={(input) => {
+                            this.input = input;
+                        }}
                     />
                     <button onClick={this.handleBtnClick}>提交</button>
                 </div>
-                <ul>
+                <ul ref={(ul) => {
+                    this.ul = ul;
+                }}>
                     {this.getTodoItem()}
                 </ul>
                 <Test content={inputValue} />
             </Fragment>
         )
     }
-    handleInputChange(e) {
+    handleInputChange() {
+        // 3.访问Refs
+        console.log(this.myDiv.current);
+
+        // 已经通过ref绑定到了this.input 中
         this.setState(() => {
-            const inputValue = e.target.value;
+            const inputValue = this.input.value;
             return { inputValue }
         })
     }
@@ -58,7 +70,11 @@ class TodoList extends Component {
                 list: [...prevState.list, prevState.inputValue],
                 inputValue: ""
             }
-        })
+        },
+            // 回调函数：第一个参数执行完后执行 
+            () => {
+                console.log(this.ul.querySelectorAll('div').length);
+            });
     }
     handleItemDelete(index) {
         this.setState((prevState) => {
