@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import TodoItem from "./TodoItem";
-import Test from "./Test";
 import "./style.css";
 
 class TodoList extends Component {
@@ -25,8 +24,25 @@ class TodoList extends Component {
         this.handleItemDelete = this.handleItemDelete.bind(this);
     }
 
+    componentWillMount() {
+        console.log("parent componentWillMount");
+    }
+
+    shouldComponentUpdate() {
+        console.log("parent shouldComponentUpdate");
+        // 返回true执行后面的生命周期函数，false则不执行
+        return true;
+    }
+    componentWillUpdate() {
+        console.log("parent componentWillUpdate");
+    }
+    componentDidUpdate() {
+        console.log("parent componentDidUpdate");
+    }
+
+
     render() {
-        console.log("todolist render");
+        console.log("parent render");
         const { inputValue } = this.state;
         return (
             <Fragment>
@@ -49,14 +65,15 @@ class TodoList extends Component {
                 }}>
                     {this.getTodoItem()}
                 </ul>
-                <Test content={inputValue} />
             </Fragment>
         )
     }
-    handleInputChange() {
-        // 3.访问Refs
-        console.log(this.myDiv.current);
 
+    componentDidMount() {
+        console.log("parent componentDidMount");
+    }
+
+    handleInputChange() {
         // 已经通过ref绑定到了this.input 中
         this.setState(() => {
             const inputValue = this.input.value;

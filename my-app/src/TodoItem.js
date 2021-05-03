@@ -8,11 +8,41 @@ class TodoItem extends Component {
 
         this.handleClick = this.handleClick.bind(this);
     }
+    componentWillMount() {
+        console.log("child componentWillMount");
+    }
+
+    shouldComponentUpdate() {
+        console.log("child shouldComponentUpdate");
+        // 返回true执行后面的生命周期函数，false则不执行
+        return true;
+    }
+    componentWillUpdate() {
+        console.log("child componentWillUpdate");
+    }
+    componentDidUpdate() {
+        console.log("child componentDidUpdate");
+    }
+
+    componentWillReceiveProps() {
+        console.log("child componentWillReceiveProps");
+    }
+
+    componentWillUnmount() {
+        console.log("child componentWillUnmount");
+    }
+
 
     render() {
+        console.log("child render");
         const { content, test } = this.props;
         return <div onClick={this.handleClick}>{test}-{content}</div>
     }
+
+    componentDidMount() {
+        console.log("child componentDidMount");
+    }
+
     handleClick() {
         // 调用父组件的 handleItemDelete 方法
         const { deleteItem, index } = this.props;

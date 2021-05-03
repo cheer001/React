@@ -84,3 +84,20 @@ diff算法(虚拟dom与真实dom进行比对)：
 在react中获取dom元素时使用(react不推荐直接操作dom，它推崇数据驱动)
 ref与setState一起使用时，把ref绑定的dom更新逻辑卸载setState的第二个参数(回调函数)中
 
+### 生命周期函数
+
+生命周期函数 指在某一时刻 组件会自动执行调用(例如：render())的函数
+以JSX为例：
+**Initialization**(初始化)：设置props和state
+**Mounting**(挂载)：会经历三个阶段
+1.ComponentWillMount():在组件即将被挂载到页面时(还没挂载到)会自动执行，在render函数
+2.render():渲染页面 ，在ComponentWillMount()初始化数据后执行
+3.ComponentDidMount():组件被挂载到页面后自动执行
+**Updation**(更新): 父组件经历4个步骤，子组件经历5个步骤，更新步骤得到所有函数都需要挂载过(初始化过)一遍后后才会执行
+1.ComponentWillReceiveProps():子组件接收父组件传递的Props,只要父组件的render()函数被重新执行了，子组件的生命周期就会被执行，需要经过一次初始化后才会执行
+2.ShouldComponentUpdate():组件更新前执行，询问是否更新组件，返回布尔值，false不执行后面步骤
+3.ComponentWillUpdate():组件更新前执行，依据ShouldComponentUpdate()的返回值决定是否执行
+4.Render():渲染虚拟DOM
+5.CompoenntDidUpdate():组件更新完成之后执行
+**Unmounting**(剔除): ComponentWillUnmount():当组件即将从页面清除时执行,存在于子组件中的dom被删除时执行
+
