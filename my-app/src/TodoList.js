@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import TodoItem from "./TodoItem";
 import "./style.css";
+import axios from "axios";
 
 class TodoList extends Component {
 
@@ -41,6 +42,16 @@ class TodoList extends Component {
                 </ul>
             </Fragment>
         )
+    }
+
+    componentDidMount() {
+        axios.get("/api/getUserInfo")
+            .then(() => {
+                console.log("succ");
+            })
+            .catch(() => {
+                console.log("error");
+            });
     }
 
     handleInputChange(e) {
