@@ -45,9 +45,11 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        axios.get("/api/getUserInfo")
-            .then(() => {
-                console.log("succ");
+        axios.get("http://mengxuegu.com:7300/mock/60964e83c7b7385be0a82e32/reactstudy/getTodoList")
+            .then((resp) => {
+                this.setState(() => ({
+                    list: [...resp.data]
+                }))
             })
             .catch(() => {
                 console.log("error");
@@ -79,7 +81,7 @@ class TodoList extends Component {
 
     getTodoItem() {
         return (
-            this.state.list.map((item, index) => {
+            this.state.list?.map((item, index) => {
                 return (
                     <TodoItem
                         key={index}
