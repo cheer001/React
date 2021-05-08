@@ -1,5 +1,5 @@
 /** 原生写css过渡样式的写法 */
-.show {
+/* .show {
     animation: show-item 2s ease-in forwards;
 }
 .hide {
@@ -34,4 +34,29 @@
         opacity: 1;
         color: blue;
     }
+} */
+
+/** CssTransition组件写法 xxx-enter*/
+.fade-enter,
+.fade-avtive {
+    opacity: 0;
+}
+.fade-enter-active,
+.fade-appear-active {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+.fade-enter-done {
+    opacity: 1;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+.fade-exit-done {
+    opacity: 0;
 }
