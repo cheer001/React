@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import TodoItem from "./TodoItem";
 import "./style.css";
 import axios from "axios";
+import App from "./App";
 
 class TodoList extends Component {
 
@@ -14,7 +15,7 @@ class TodoList extends Component {
             /** input输入框中的值 */
             inputValue: '',
             /** 列表中的每一项 */
-            list: []
+            list: [],
         }
 
         // 使用ES6语法中的bind函数改变this的指向
@@ -40,6 +41,7 @@ class TodoList extends Component {
                 <ul>
                     {this.getTodoItem()}
                 </ul>
+                <App />
             </Fragment>
         )
     }
