@@ -100,4 +100,20 @@ ref与setState一起使用时，把ref绑定的dom更新逻辑卸载setState的�
 4.Render():渲染虚拟DOM
 5.CompoenntDidUpdate():组件更新完成之后执行
 **Unmounting**(剔除): ComponentWillUnmount():当组件即将从页面清除时执行,存在于子组件中的dom被删除时执行
+**shouldComponentUpdate**(是否更新组件)：返回bool值，用于优化子组件更新次数
+
+### 过渡动画
+
+步骤：
+1.声明一个状态
+2.将状态绑定到一个按钮或者其他能触发事件的dom上
+3.在按钮上的className绑定样式，可以判断状态来绑定不同的样式
+4.写过渡样式：
+4.1(学了一些简单的样式)：
+	opacity(不透明度)：0-1，
+	transition(过渡函数)： <property> <duration> <timing-function> <delay>
+
+### redux
+
+将所有组件中的状态(state)放在一个公共区域(store)，某一个组件修改了状态后其他组件就能感知到，解决了react复杂传值的问题
 
