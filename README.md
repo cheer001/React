@@ -176,10 +176,17 @@ React中的组件，状态改变的发起者
 #### **Action Creators**:
 组件发起状态改变的请求后，Store通过dispatch将请求(包含PreviousState与action)转发给Reducer
 #### **Store**:
-全局数据管理中心，
+
+全局数据管理中心
+
 createStore(reducer)，创建store的函数传入一个reducer表示管理中心有个记录仪
+
 getState():Store最新的数据
-subscribe()函数需要在ReactComponent组件中调用，该函数可以将	reducer返回的新状态赋值给组件的state
+
+subscribe()函数需要在ReactComponent组件中调用，该函数可以将
+
+reducer返回的新状态赋值给组件的state
+
 dispatch():将组件需要改变状态对的请求与改变的数据转发给Reducer
 
 #### **Reducers**:
