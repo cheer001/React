@@ -197,3 +197,14 @@ dispatch():将组件需要改变状态对的请求与改变的数据转发给Red
 
 没有引入ActionTypes时在组件中直接写字符串，如果出现拼写错误会很难排查，控制台不会出现任何错误异样。  引入ActionTypes之后如果出现拼写错误会直接编译异常
 
+#### Redux流程：
+
+组件有改变store中的state需求时
+
+1.创建一个action
+
+2.通过store的dispatch将action派发给reducer
+
+3.reducer虽然能接受到状态与action但是不能直接修改state所以可以进行深拷贝然后进行组件所需的逻辑操作后 返回新的state
+
+4.组件中通过store的subscribe()，可以在该函数中通过store的getState()获取reducer返回的新状态，然后更新数据
