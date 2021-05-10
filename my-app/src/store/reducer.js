@@ -1,3 +1,5 @@
+import { CHANGE_INPUT_VALUE, ADD_TODO_ITEM, DEL_TODO_ITEM } from "./actionTypes";
+
 const defaultState = {
     inputValue: "",
     list: ["one", "two", "three"]
@@ -7,19 +9,19 @@ const defaultState = {
  * 在每次组件发起状态的改变时都会收到一个previousState与action
  */
 const reducers = (state = defaultState, action) => {
-    if (action.type === "change_input_value") {
+    if (action.type === CHANGE_INPUT_VALUE) {
         // 对previousState数据进行深拷贝
         const newState = JSON.parse(JSON.stringify(state));
         newState.inputValue = action.value;
         return newState;
     }
-    if (action.type === "add_todo_item") {
+    if (action.type === ADD_TODO_ITEM) {
         const newState = JSON.parse(JSON.stringify(state));
         newState.list.push(newState.inputValue);
         newState.inputValue = "";
         return newState;
     }
-    if (action.type === "del_todo_item") {
+    if (action.type === DEL_TODO_ITEM) {
         const newState = JSON.parse(JSON.stringify(state));
         newState.list.splice(action.index, 1);
         return newState;
