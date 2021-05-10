@@ -181,13 +181,11 @@ React中的组件，状态改变的发起者
 
 createStore(reducer)，创建store的函数传入一个reducer表示管理中心有个记录仪
 
-getState():Store最新的数据
+getState():获取Store的数据
 
-subscribe()函数需要在ReactComponent组件中调用，该函数可以将
+subscribe()该函数可以将订阅store中state的改变，有改变时subscribe接受的回调函数就会执行
 
-reducer返回的新状态赋值给组件的state
-
-dispatch():将组件需要改变状态对的请求与改变的数据转发给Reducer
+dispatch():将组件需要改变状态的请求(action)转发/派发给Reducer
 
 #### **Reducers**:
 
@@ -207,4 +205,10 @@ dispatch():将组件需要改变状态对的请求与改变的数据转发给Red
 
 3.reducer虽然能接受到状态与action但是不能直接修改state所以可以进行深拷贝然后进行组件所需的逻辑操作后 返回新的state
 
-4.组件中通过store的subscribe()，可以在该函数中通过store的getState()获取reducer返回的新状态，然后更新数据
+4.store接收到reducer返回的新state后更新state数据
+
+5.组件中通过store的subscribe()，可以在该函数中通过store的getState()获取store中的state，然后更新数据
+
+注意：只有store能改变state，reducer只是返回新state，改变的事还是有store做
+
+同时，reducer必须时一个纯函数，纯函数是指，给固定的输入，就一定有固定的输出，而且不会有任何副作用。不纯的函数举例：在函数中做日期赋值或者异步操作等，将state值变成一些不可预测的值等操作。副作用指：修改store中的state会带来一些意向不到的因素
