@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import 'antd/dist/antd.css';
-import { Input, Button, List, Typography } from "antd";
+import { Input, Button, List } from "antd";
 import store from "./store";
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
-        console.log(store.getState());
         this.state = store.getState();
         this.handleInpurChange = this.handleInputChange.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
@@ -32,12 +31,14 @@ class TodoList extends Component {
                         </Button>
                 </div>
                 <List
-                    style={{ marginTop: 10 }}
+                    style={{ marginTop: 10, width: 300 }}
                     bordered
                     dataSource={this.state.list}
-                    renderItem={item => (
-                        <List.Item>
-                            <Typography.Text mark>[ITEM]</Typography.Text> {item}
+                    renderItem={(item, index) => (
+                        <List.Item
+                            onClick={this.handleItemDelete.bind(this, index)}
+                        >
+                            {item}
                         </List.Item>
                     )}
                 />
@@ -69,6 +70,14 @@ class TodoList extends Component {
     handleBtnClick() {
         const action = {
             type: "add_todo_item",
+        }
+        store.dispatch(action);
+    }
+
+    handleItemDelete(index) {
+        const action = {
+            type: "del_todo_item",
+            index
         }
         store.dispatch(action);
     }
