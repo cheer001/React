@@ -201,7 +201,7 @@ dispatch():将组件需要改变状态的请求(action)转发/派发给Reducer
 
 1.创建一个action
 
-2.通过store的dispatch将action派发给reducer
+2.通过store的dispatch将action派发给reducer的时候action会自动执行
 
 3.reducer虽然能接受到状态与action但是不能直接修改state所以可以进行深拷贝然后进行组件所需的逻辑操作后 返回新的state
 
@@ -223,3 +223,37 @@ dispatch():将组件需要改变状态的请求(action)转发/派发给Reducer
 
 类组件需要执行生命周期函数与render()函数，无状态组件省略了这些执行步骤
 
+### Redux-thunk 中间件
+
+https://github.com/reduxjs/redux-thunk
+
+```react
+import { createStore, applyMiddleware, compose } from "redux";
+import reducer from "./reducer";
+import thunk from "redux-thunk";
+
+/** 构建扩增展器 */
+const composeEnhancers =
+    typeof window === 'object' &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        }) : compose;
+
+// 通过构建扩展器调用 申请中间间函数，传入中间件(在actionCreator中可以返回函数)
+const enhancer = composeEnhancers(
+    applyMiddleware(thunk),
+);
+
+// 创建store时加入扩展器
+const store = createStore(reducer, enhancer);
+
+export default store;
+```
+
+
+
+#### 作用：
+
+1.使用redux-thunk中间件实现ajax数据请求，在不使用thunk中间件时actionCreator中只能返回一个对象，使用后可以返回一个函数，这个函数接收dispatch参数，用来发送函数中的action到reducer(走reducer的流程)
+
+2.在actionCreator中管理项目中的业务逻辑
