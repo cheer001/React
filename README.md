@@ -69,8 +69,9 @@ https://zh-hans.reactjs.org/docs/typechecking-with-proptypes.html
 
 ### 虚拟DOM
 
-数据+模板 先形成JSX模板 --> 再变成JS对象(虚拟DOM)-->最后再编程真实DOM
+数据+模板 先形成JSX模板 --> 再变成JS对象(虚拟DOM)-->最后再变成真实DOM
 底层使用React.createElement("标签",{标签属性},"innerHTML值")接口做成真实DOM
+
 #### 优点：
 1.性能提升
 
@@ -94,12 +95,13 @@ diff算法(虚拟dom与真实dom进行比对)：
 ### Ref
 
 在react中获取dom元素时使用(react不推荐直接操作dom，它推崇数据驱动)
-ref与setState一起使用时，把ref绑定的dom更新逻辑卸载setState的第二个参数(回调函数)中
+ref与setState一起使用时，把ref绑定的dom更新逻辑写在setState的第二个参数(回调函数)中
 
 ### 生命周期函数
 
 生命周期函数 指在某一时刻 组件会自动执行调用(例如：render())的函数
 以JSX为例：
+
 #### **Initialization**(初始化)：
 
 设置props和state
@@ -110,7 +112,7 @@ ref与setState一起使用时，把ref绑定的dom更新逻辑卸载setState的�
 
 ##### 1.ComponentWillMount():
 
-在组件即将被挂载到页面时(还没挂载到)会自动执行，在render函数
+在组件即将被挂载到页面时(还没挂载到)会自动执行
 
 ##### 2.render():
 
@@ -211,7 +213,7 @@ dispatch():将组件需要改变状态的请求(action)转发/派发给Reducer
 
 注意：只有store能改变state，reducer只是返回新state，改变的事还是有store做
 
-同时，reducer必须时一个纯函数，纯函数是指，给固定的输入，就一定有固定的输出，而且不会有任何副作用。不纯的函数举例：在函数中做日期赋值或者异步操作等，将state值变成一些不可预测的值等操作。副作用指：修改store中的state会带来一些意向不到的因素
+同时，reducer必须是一个纯函数，纯函数是指，给固定的输入，就一定有固定的输出，而且不会有任何副作用。不纯的函数举例：在函数中做日期赋值或者异步操作等，将state值变成一些不可预测的值等操作。副作用指：修改store中的state会带来一些意向不到的因素
 
 ### 无状态组件
 
@@ -232,14 +234,14 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reducer from "./reducer";
 import thunk from "redux-thunk";
 
-/** 构建扩增展器 */
+/** 构建扩展器 */
 const composeEnhancers =
     typeof window === 'object' &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         }) : compose;
 
-// 通过构建扩展器调用 申请中间间函数，传入中间件(在actionCreator中可以返回函数)
+// 通过构建扩展器调用 申请中间件函数，传入中间件(在actionCreator中可以返回函数)
 const enhancer = composeEnhancers(
     applyMiddleware(thunk),
 );
